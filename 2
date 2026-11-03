@@ -4,11 +4,18 @@
 #include <math.h>
 #define _CRT_SECURE_NO_WARNINGS
 void main(){
-  long long number, first_number;
-  puts("Введите длинное число: ");
-  scanf("%lld", &number);
-  if (number != 1) return 1;
-  number = first_number;
+  char answer;
+  do{
+    long long number, first_number;
+    puts("Введите длинное число: ");
+    scanf("%lld", &number);
+    if (number != 1) {return 1;
+    number = first_number;
+    while(getchar()!= '\n');
+    printf("Продолжить? (Да - y, нет - n)");
+    answer = getchar();
+    continue;
+    }
   int arr[30], n = 0;
   if (first_number == 0){
     arr[0]=0;
@@ -32,5 +39,10 @@ void main(){
     if (d == 3) count3++;
   }
   printf("Количество цифр 3 равно: %d\n", count3);
+  while (getchar()!='\n');
+  printf("\nПродолжить? (Да - y, нет - n)");
+  answer=getchar();
+  }while(answer!='n' && answer!='N');
+printf("Программа завершена.\n");
 return 0
 }
