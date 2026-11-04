@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+int main() {
+    char symbol;
+    int h, b;
+    double angle;
+    int step;
+    int row, col;
+    printf("Введите символ для рисования: ");
+    scanf(" %c", &symbol);
+    printf("Введите высоту трапеции (h): ");
+    scanf("%d", &h);
+    printf("Введите верхнее основание (b): ");
+    scanf("%d", &b);
+    printf("Введите угол при нижнем основании в градусах (угол a): ");
+    scanf("%lf", &angle);
+    if (h <= 0 || b <= 0 || angle <= 0 || angle >= 90) {
+        printf("Некорректные параметры геометрической фигуры.\n");
+        return 1;
+    }
+    double angle_rad = angle * M_PI / 180.0;
+    step = (int)round((h - 1) / tan(angle_rad)) / (h - 1);
+    if (step < 1) step = 1;
+    printf("\n--- Результат: Прямоугольная трапеция (контур) ---\n");
+    row = 1;
+    do {
+        int current_width = b + (row - 1) * step; 
+        col = 1;
+        do {
+            if (row == 1 || row == h || col == 1 || col == current_width) {
+                printf("%c ", symbol);
+            } else {
+                printf("  ");
+            }
+            col++;
+        } while (col <= current_width);
+        printf("\n");
+        row++;
+    } while (row <= h);
+    return 0;
+}
