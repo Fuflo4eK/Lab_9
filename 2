@@ -1,48 +1,29 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <math.h>
-#define _CRT_SECURE_NO_WARNINGS
-void main(){
-  char answer;
-  do{
-    long long number, first_number;
-    puts("Введите длинное число: ");
-    scanf("%lld", &number);
-    if (number != 1) {return 1;
-    number = first_number;
-    while(getchar()!= '\n');
-    printf("Продолжить? (Да - y, нет - n)");
-    answer = getchar();
-    continue;
+int main(){
+    int number;
+    int reversed = 0;
+    int remainder;
+    printf("Введите целое число: ");
+    scanf("%d", &number);
+    if (number < 0) {
+        printf("-");
+        number = -number;
     }
-  int arr[30], n = 0;
-  if (first_number == 0){
-    arr[0]=0;
-    n=1;
-  }else{
-    int revers_arr[30];
-    int revers_n = 0;
-    while(first_number>0){
-      revers_arr[revers_n++] = first_number % 10;
-      first_number /= 10;
+    if (number == 0){
+        printf("0\n");
+        return 0;
     }
-    for(int i = 0; i < revers_n; i++){
-      arr[i] = revers_arr[revers_n -1 -i];
+    int temp = number;
+    while (number > 0){
+        remainder = number % 10;
+        reversed = reversed * 10 + remainder;
+        number /=10;
     }
-    n = revers_n;
-  }
-  int count3=0;
-  int last_num = arr[n-1];
-  for (int i = 0; i < n; i++){
-    int d = arr[i];
-    if (d == 3) count3++;
-  }
-  printf("Количество цифр 3 равно: %d\n", count3);
-  while (getchar()!='\n');
-  printf("\nПродолжить? (Да - y, нет - n)");
-  answer=getchar();
-  }while(answer!='n' && answer!='N');
-printf("Программа завершена.\n");
-return 0
+    while (reversed > 0){
+        remainder = reversed % 10;
+        printf("%d", remainder);
+        reversed/=10;
+    }
+    printf(\n);
+    return 0;
 }
